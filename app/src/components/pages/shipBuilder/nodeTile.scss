@@ -1,0 +1,38 @@
+.mt-nodeTile {
+  position: relative;
+  display: inline-block;
+  height: 50px;
+  width: 50px;
+
+  > .f-foreground-tile,
+  > .f-background-tile {
+    height: 46px;
+    width: 46px;
+    top: 2px;
+    left: 2px;
+    position: absolute;
+
+    > img {
+      height: 100%;
+      width: 100%;
+    }
+  }
+
+  > .f-background-tile > img {
+    opacity: 50%;
+  }
+
+  > .f-foreground-tile > img {
+    box-shadow: 0 3.2px 7.2px 0 rgba(0, 0, 0, 0.132), 0 0.6px 1.8px 0 rgba(0, 0, 0);
+  }
+
+  &.rotate-90 > .f-foreground-tile > img {
+    transform: rotate(90deg);
+  }
+  &.rotate-180 > .f-foreground-tile > img {
+    transform: rotate(180deg);
+  }
+  &.rotate-270 > .f-foreground-tile > img {
+    transform: rotate(270deg);
+  }
+}

@@ -1,0 +1,14 @@
+$shipGridTileW: (11 * 52 + 2)px;
+$shipGridTileH: (11 * 52 + 2)px;
+
+.mt-ShipTileGrid {
+  display: block;
+  height: $shipGridTileH;
+  width: $shipGridTileW;
+  margin: auto;
+  margin-top: 50px;
+
+  .cc-shipRow {
+    height: 50px;
+  }
+}

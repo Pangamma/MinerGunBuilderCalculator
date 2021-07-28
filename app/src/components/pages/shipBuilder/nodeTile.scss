@@ -4,8 +4,7 @@
   height: 50px;
   width: 50px;
 
-  > .f-foreground-tile,
-  > .f-background-tile {
+  > .f-foreground-tile {
     height: 46px;
     width: 46px;
     top: 2px;
@@ -18,13 +17,9 @@
     }
   }
 
-  > .f-background-tile > img {
-    opacity: 50%;
-  }
-
-  > .f-foreground-tile > img {
-    box-shadow: 0 3.2px 7.2px 0 rgba(0, 0, 0, 0.132), 0 0.6px 1.8px 0 rgba(0, 0, 0);
-  }
+  // > .f-foreground-tile > img {
+  //   box-shadow: 0 3.2px 7.2px 0 rgba(0, 0, 0, 0.132), 0 0.6px 1.8px 0 rgba(0, 0, 0);
+  // }
 
   &.rotate-90 > .f-foreground-tile > img {
     transform: rotate(90deg);

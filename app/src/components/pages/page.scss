@@ -25,5 +25,7 @@
         .mt-page-middle {
             grid-area: mt-page-content;
             background: var(--mt-color-background-secondary);
+            max-width: 700px;
+            margin: auto;
         }
 }

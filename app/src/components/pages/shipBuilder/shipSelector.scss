@@ -1,0 +1,36 @@
+.mt-ShipSelector {
+  position: absolute;
+  right: 0;
+  top: 20px;
+  padding: 5px;
+  width: 110px;
+  height: 110px;
+  z-index: 10;
+
+  > .cc-selector {
+    max-width: 100%;
+    > select {
+      max-width: 100%;
+    }
+  }
+
+  > .cc-selectedShipFrame {
+    height: 100%;
+    width: 100%;
+    background: #efefef;
+    border: 4px solid black;
+
+    > .cc-imgWrapper {
+      text-align: center;
+      max-height: 100%;
+      max-width: 100%;
+      margin-top: 5px;
+
+      > img {
+        max-height: 80px;
+        max-width: 80px;
+      }
+    }
+
+  }
+}

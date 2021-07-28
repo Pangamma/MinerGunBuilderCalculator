@@ -1,17 +1,21 @@
 import { AnyAction, Dispatch, bindActionCreators } from 'redux';
 import { configureStore, createSlice, PayloadAction, CaseReducer, SliceCaseReducers } from '@reduxjs/toolkit';
 import { Logger } from './utils/logger';
+import { Ship, ships } from './models/ships';
 
 export interface AppState {
   innerWidth: number;
+  ship: Ship;
 }
 
 const initialState: AppState = {
-  innerWidth: window.innerWidth
+  innerWidth: window.innerWidth,
+  ship: ships[0],
 };
 
 interface AppStateReducers extends SliceCaseReducers<AppState> {
   setInnerWidth: CaseReducer<AppState, PayloadAction<number>>;
+  setShip: CaseReducer<AppState, PayloadAction<Ship>>;
 }
 
 const storeSlice = createSlice<AppState, AppStateReducers>({
@@ -20,6 +24,9 @@ const storeSlice = createSlice<AppState, AppStateReducers>({
   reducers: {
     setInnerWidth: (state, action) => {
       state.innerWidth = action.payload;
+    },
+    setShip: (state, action) => {
+      state.ship = action.payload;
     }
   }
 });

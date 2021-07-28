@@ -1,39 +1,55 @@
 import React from 'react';
-import { appHistory, AppRoute, appRoutes } from '../../../routes';
-import { TileButton } from '../../common/tileButton';
 import { Page } from '@pages/page';
-import { NodeTile } from '../shipBuilder/nodeTile';
 import { ShipTileGrid } from '../shipBuilder/shipTileGrid';
-import { ships } from '@root/models/ships';
+import { Ship } from '@root/models/ships';
+import { TileHelper } from '@root/logic/TileHelper';
+import { ShipTile } from '@root/models/tile';
+import { ShipSelector } from '../shipBuilder/shipSelector';
+import { AppState } from '@root/store';
+import { connect } from 'react-redux';
 
-interface HomeIndexProps {
+interface PropsFromStore {
+  ship: Ship;
+}
+
+type HomeIndexProps = PropsFromStore & {
 }
 
 interface HomeIndexState {
 }
 
-export class HomeIndex extends React.PureComponent<HomeIndexProps, HomeIndexState> {
-    constructor(props: HomeIndexProps) {
-        super(props);
+class HomeIndexComponent extends React.PureComponent<HomeIndexProps, HomeIndexState> {
+  constructor(props: HomeIndexProps) {
+    super(props);
 
-        this.state = {
+    this.state = {
 
-        };
-    }
+    };
+  }
 
-    private getTileClass = (r: AppRoute): string | undefined => {
-        if (r.label && r.label.indexOf('Edit') > -1) {
-            return 'f-red-muted';
+  public render(): React.ReactNode {
+    const layout = TileHelper.getLayoutFromShipDefinition(this.props.ship);
+    const tileLayout: ShipTile[][] = layout.map<ShipTile[]>((row) => {
+      return row.map<ShipTile>((col: string) => {
+        switch (col) {
+          case 'X':
+            return { nodeId: 'filled', rotation: 0 };
+          case 'S':
+            return { nodeId: 'start', rotation: 0 };
+          case '_':
+            return { nodeId: 'empty', rotation: 0 };
+          case 'F':
+          default:
+            return { nodeId: 'finish', rotation: 0 };
         }
+      });
+    });
 
-        return undefined;
-    }
-
-    public render(): React.ReactNode {
-        return (
-            <Page>
-              <ShipTileGrid ship={ships[ships.length - 1]}/>
-                {/* <div className='mt-tile-container'>
+    return (
+      <Page>
+      <ShipSelector />
+      <ShipTileGrid tiles={tileLayout} />
+        {/* <div className='mt-tile-container'>
                     <TileButton key={-1} title='Fonts' className='f-purple' onClick={() => { window.location.href = '/assets/demo.html'; }} />
                     {appRoutes.filter(r => r.label).map((r, i) =>
                         <TileButton key={i} title={r.label!}
@@ -42,7 +58,15 @@ export class HomeIndex extends React.PureComponent<HomeIndexProps, HomeIndexStat
                         />
                     )}
                 </div> */}
-            </Page>
-        );
-    }
+      </Page >
+    );
+  }
 }
+
+const stateToProps = (state: AppState, ownProps: Omit<HomeIndexProps, keyof PropsFromStore>): PropsFromStore => {
+  return {
+    ship: state.ship
+  };
+};
+
+export const HomeIndex = connect(stateToProps)(HomeIndexComponent);

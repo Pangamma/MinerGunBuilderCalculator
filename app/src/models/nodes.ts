@@ -22,7 +22,9 @@ export abstract class Node implements ShipTile {
     this.nodeId = props.nodeId;
   }
 
-  public abstract processProjectiles(projectiles: ProjectileBundle): ProjectileBundle;
+  public abstract applyFirstPass(projectiles: ProjectileBundle): ProjectileBundle;
+  public abstract applySecondPass(projectiles: ProjectileBundle): ProjectileBundle;
+
   public abstract canBePlaced(projectiles: ProjectileBundle): ProjectileBundle;
 
   /**

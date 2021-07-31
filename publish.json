@@ -1,0 +1,9 @@
+{
+	"ssh": {
+		"user": "foo",
+		"pass": "bar"
+	},
+	"chown": "taylorlove:psacln",
+	"originalDir": "/httpdocs/projects/mgb-calc",
+	"deployDir": "/httpdocs/projects/mgb-calc-deploy"
+}
